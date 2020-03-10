@@ -15,10 +15,10 @@ class m200310_011932_Criar_Tabela_Professor extends Migration
         $this->createTable('professor',
             [
                 'id'=> $this->primaryKey(),
-                'cpf'=>$this-$this->string()->notNull(),
-                'nome'=>$this->string()->notNull(),
-                'sobreNome'=>$this->string()->notNull(),
-                'titulacao'=>$this->string()->notNull(),
+                'cpf'=>$this-$this->string(12)->notNull(),
+                'nome'=>$this->string()->notNull(60),
+                'sobreNome'=>$this->string()->notNull(60),
+                'titulacao'=>$this->string()->notNull(60),
                 'valor_hora_aula'=>$this->float()->notNull(),
 
             ]

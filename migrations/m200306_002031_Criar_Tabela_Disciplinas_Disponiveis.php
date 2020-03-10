@@ -17,7 +17,8 @@ class m200306_002031_Criar_Tabela_Disciplinas_Disponiveis extends Migration
                 'id'=>$this->primaryKey(),
                 'descricao'=>$this->string(60)->notNull(),
                 'carga_horaria'=>$this->integer()->notNull(),
-            ]);
+            ]
+        );
     }
 
     /**

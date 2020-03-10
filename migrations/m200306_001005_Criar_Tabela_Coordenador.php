@@ -17,7 +17,8 @@ class m200306_001005_Criar_Tabela_Coordenador extends Migration
                 'id'=>$this->primaryKey(),
                 'nome'=>$this->string(60)->notNull(),
                 'sobre_nome'=>$this->string(60)->notNull(),
-            ]);
+            ]
+        );
     }
 
     /**

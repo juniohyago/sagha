@@ -3,9 +3,9 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=saghaDb',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
+    'username' => 'hyago',
+    'password' => '5450',
+    'charset' => 'utf8'
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

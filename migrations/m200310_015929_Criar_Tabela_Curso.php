@@ -37,6 +37,7 @@ class m200310_015929_Criar_Tabela_Curso extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('fk_cordenador_id','curso');
         $this->dropTable('curso');
     }
 

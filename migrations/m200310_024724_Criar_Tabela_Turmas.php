@@ -39,6 +39,7 @@ class m200310_024724_Criar_Tabela_Turmas extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('fk_curso_id','turmas');
         $this->dropTable('turmas');
     }
 

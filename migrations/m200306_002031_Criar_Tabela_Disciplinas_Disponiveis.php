@@ -26,9 +26,7 @@ class m200306_002031_Criar_Tabela_Disciplinas_Disponiveis extends Migration
      */
     public function safeDown()
     {
-        echo "m200306_002031_Criar_Tabela_Disciplinas_Disponiveis cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('disciplinas_disponiveis');
     }
 
     /*

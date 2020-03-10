@@ -26,9 +26,7 @@ class m200306_001005_Criar_Tabela_Coordenador extends Migration
      */
     public function safeDown()
     {
-        echo "m200306_001005_Criar_Tabela_Coordenador cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('coordenador');
     }
 
     /*

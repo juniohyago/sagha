@@ -25,9 +25,7 @@ class m200310_013949_Criar_Tabela_Unidade extends Migration
      */
     public function safeDown()
     {
-        echo "m200310_013949_Criar_Tabela_Unidade cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('unidade');
     }
 
     /*

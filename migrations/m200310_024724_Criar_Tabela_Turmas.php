@@ -39,9 +39,7 @@ class m200310_024724_Criar_Tabela_Turmas extends Migration
      */
     public function safeDown()
     {
-        echo "m200310_024724_Criar_Tabela_Turmas cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('turmas');
     }
 
     /*

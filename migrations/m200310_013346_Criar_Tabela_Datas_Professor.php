@@ -26,9 +26,7 @@ class m200310_013346_Criar_Tabela_Datas_Professor extends Migration
      */
     public function safeDown()
     {
-        echo "m200310_013346_Criar_Tabela_Datas_Professor cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('datas_professor');
     }
 
     /*

@@ -30,9 +30,7 @@ class m200310_011932_Criar_Tabela_Professor extends Migration
      */
     public function safeDown()
     {
-        echo "m200310_011932_Criar_Tabela_Professor cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('professor');
     }
 
     /*

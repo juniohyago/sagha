@@ -1,0 +1,3 @@
+./yii migrate/create create_junction_table_for_disciplinas_disponiveis_and_curso_tables
+./yii migrate/create create_junction_table_for_unidade_and_curso_tables
+./yii migrate/create create_junction_table_for_disciplinas_disponiveis_and_professor_tables

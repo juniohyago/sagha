@@ -2,3 +2,4 @@
 ./yii migrate/create create_junction_table_for_unidade_and_curso_tables
 ./yii migrate/create create_junction_table_for_disciplinas_disponiveis_and_professor_tables
 ./yii migrate/create create_junction_table_for_datas_professor_and_professor_tables
+./yii migrate/create create_junction_table_for_aula_and_professor_tables

@@ -9,7 +9,7 @@ use yii\db\Migration;
  * - `{{%aula}}`
  * - `{{%professor}}`
  */
-class m200313_030631_create_junction_table_for_aula_and_professor_tables extends Migration
+class m200316_163602_create_junction_table_for_aula_and_professor_tables extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,14 +19,7 @@ class m200313_030631_create_junction_table_for_aula_and_professor_tables extends
         $this->createTable('{{%aula_professor}}', [
             'aula_id' => $this->integer(),
             'professor_id' => $this->integer(),
-            'disciplinas_disponiveis_professor_disciplinas_disponiveis_id'=>$this->integer(),
-            'disciplinas_disponiveis_professor_professor_id'=>$this->integer(),
-            'PRIMARY KEY(
-                 aula_id,
-                 professor_id,
-                 disciplinas_disponiveis_professor_disciplinas_disponiveis_id,
-                 disciplinas_disponiveis_professor_professor_id
-                 )',
+            'PRIMARY KEY(aula_id, professor_id)',
         ]);
 
         // creates index for column `aula_id`
@@ -62,16 +55,6 @@ class m200313_030631_create_junction_table_for_aula_and_professor_tables extends
             'id',
             'CASCADE'
         );
-          // add foreign key for table `{{%disciplinas_disponiveis_professor_disciplinas_disponiveis_id}}`
-          $this->addForeignKey(
-              '{{%fk-disciplinas_disponiveis_professor_disciplinas_disponiveis_id}}',
-              '{{%aula_professor}}',
-              'disciplinas_disponiveis_professor_disciplinas_disponiveis_id',
-              '{{%disciplinas_disponiveis_curso}}',
-              'disciplinas_disponiveis_id',
-              'CASCADE'
-          );
-
     }
 
     /**

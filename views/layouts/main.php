@@ -71,7 +71,10 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; SAGHA <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">Criado por: Alexandre Fernandes Manso;
+                                          Junio Hyago Jorge da Mata;
+                                          Thulio Thalles Amaral Carneiro.
+        </p>
     </div>
 </footer>
 

@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'SAGHA',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,9 +38,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Pagina inicial', 'url' => ['/site/index']],
+//            ['label' => 'Quem somos', 'url' => ['/site/about']],
+            ['label' => 'Contato', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -71,8 +71,8 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; SAGHA <?= date('Y') ?></p>
 
-        <p class="pull-right">Criado por: Alexandre Fernandes Manso;
-                                          Junio Hyago Jorge da Mata;
+        <p class="pull-right">Criado por: Alexandre Fernandes Manso |
+                                          Junio Hyago Jorge da Mata |
                                           Thulio Thalles Amaral Carneiro.
         </p>
     </div>

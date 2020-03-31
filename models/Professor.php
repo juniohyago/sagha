@@ -62,6 +62,7 @@ class Professor extends \yii\db\ActiveRecord
             'telefone' => 'Telefone',
             'titulacao' => 'Titulacao',
             'valor_hora_aula' => 'Valor Hora Aula',
+
         ];
     }
 

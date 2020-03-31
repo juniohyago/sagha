@@ -18,6 +18,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sobreNome')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'telefone')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'titulacao')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'valor_hora_aula')->textInput() ?>

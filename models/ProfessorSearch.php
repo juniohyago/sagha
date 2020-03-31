@@ -18,7 +18,7 @@ class ProfessorSearch extends Professor
     {
         return [
             [['id'], 'integer'],
-            [['cpf', 'nome', 'sobreNome', 'titulacao'], 'safe'],
+            [['cpf', 'nome', 'sobreNome', 'email', 'telefone', 'titulacao'], 'safe'],
             [['valor_hora_aula'], 'number'],
         ];
     }
@@ -66,6 +66,8 @@ class ProfessorSearch extends Professor
         $query->andFilterWhere(['like', 'cpf', $this->cpf])
             ->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'sobreNome', $this->sobreNome])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'telefone', $this->telefone])
             ->andFilterWhere(['like', 'titulacao', $this->titulacao]);
 
         return $dataProvider;

@@ -33,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'cpf',
             'nome',
             'sobreNome',
+            'email:email',
+            'telefone',
             'titulacao',
             'valor_hora_aula',
         ],

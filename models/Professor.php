@@ -11,6 +11,8 @@ use Yii;
  * @property string $cpf
  * @property string $nome
  * @property string $sobreNome
+ * @property string $email
+ * @property string $telefone
  * @property string $titulacao
  * @property float $valor_hora_aula
  *
@@ -37,10 +39,12 @@ class Professor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cpf', 'nome', 'sobreNome', 'titulacao', 'valor_hora_aula'], 'required'],
+            [['cpf', 'nome', 'sobreNome', 'email', 'telefone', 'titulacao', 'valor_hora_aula'], 'required'],
             [['valor_hora_aula'], 'number'],
             [['cpf'], 'string', 'max' => 12],
             [['nome', 'sobreNome', 'titulacao'], 'string', 'max' => 255],
+            [['email'], 'string', 'max' => 50],
+            [['telefone'], 'string', 'max' => 20],
         ];
     }
 
@@ -54,6 +58,8 @@ class Professor extends \yii\db\ActiveRecord
             'cpf' => 'Cpf',
             'nome' => 'Nome',
             'sobreNome' => 'Sobre Nome',
+            'email' => 'Email',
+            'telefone' => 'Telefone',
             'titulacao' => 'Titulacao',
             'valor_hora_aula' => 'Valor Hora Aula',
         ];

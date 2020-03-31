@@ -30,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'cpf',
             'nome',
             'sobreNome',
-            'titulacao',
+            'email:email',
+            //'telefone',
+            //'titulacao',
             //'valor_hora_aula',
 
             ['class' => 'yii\grid\ActionColumn'],

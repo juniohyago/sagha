@@ -49,8 +49,8 @@ class DisciplinasDisponiveis extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao' => 'Descricao',
-            'carga_horaria' => 'Carga Horaria',
+            'descricao' => 'Descrição',
+            'carga_horaria' => 'Carga Horária',
             'arrayCursos'=> 'Cursos',
             'arrayDisciplinas' => 'Disciplinas'
         ];

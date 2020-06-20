@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Coordenador */
 
-$this->title = 'Create Coordenador';
+$this->title = 'Criar Coordenador';
 $this->params['breadcrumbs'][] = ['label' => 'Coordenadores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

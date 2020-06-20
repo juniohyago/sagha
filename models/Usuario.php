@@ -46,7 +46,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'tipo_usuario' => 'Tipo Usuario',
+            'tipo_usuario' => 'Tipo Usuário',
             'username' => 'Username',
             'password' => 'Password',
             'authKey' => 'Auth Key',

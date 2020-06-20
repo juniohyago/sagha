@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\DisciplinasSerach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Disciplinas Aderentes';
+$this->title = 'Disciplinas Aderênte';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="disciplinas-disponiveis-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Disciplinas Aderentes', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Disciplina Aderênte', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

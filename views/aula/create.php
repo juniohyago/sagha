@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $data app\models\Datas */
 
 
-$this->title = 'Create Aula';
+$this->title = 'Criar Aula';
 $this->params['breadcrumbs'][] = ['label' => 'Aulas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

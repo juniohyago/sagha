@@ -46,9 +46,9 @@ class Datas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'dataHora_inicio' => 'Data Hora Inicio',
+            'dataHora_inicio' => 'Data Hora Início',
             'dataHora_fim' => 'Data Hora Fim',
-            'quantidadeSemanas' => 'Quantas Semanas',
+            'quantidadeSemanas' => 'Total de Semanas',
         ];
     }
 

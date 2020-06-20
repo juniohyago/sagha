@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $disponiveis array */
 
 
-$this->title = 'Create Disciplinas Aderentes';
+$this->title = 'Criar Disciplina Aderênte';
 $this->params['breadcrumbs'][] = ['label' => 'Disciplinas Disponiveis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

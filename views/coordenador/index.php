@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Coordenador', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Coordenador', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'sobre_nome',
             [
-                'header'=>"Usuario",
+                'header'=>"Usuário",
                 'attribute'=>'fkUsuario.username'
             ],
             ['class' => \app\models\actionAdmin::class],

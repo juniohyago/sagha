@@ -51,7 +51,7 @@ class Curso extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'tipo_curso' => 'Tipo Curso',
             'fk_coordenador_id' => 'Coordenador',
             'unidadeSet'=>'Unidades',

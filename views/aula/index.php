@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Aula', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Aula', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'descricao',
             [
-                'header' => 'Diciplina',
+                'header' => 'Disciplina',
                 'attribute' => 'fkDisciplinasDisponiveis.descricao',
                 'filter' =>$searchModel
             ],

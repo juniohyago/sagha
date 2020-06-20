@@ -63,9 +63,9 @@ class Professor extends \yii\db\ActiveRecord
             'sobreNome' => 'Sobrenome',
             'email' => 'Email',
             'telefone' => 'Telefone',
-            'titulacao' => 'Titulacao',
+            'titulacao' => 'Titulação',
             'valor_hora_aula' => 'Valor Hora Aula',
-            'fkProfessor_usuario_id' => 'Usuario',
+            'fkProfessor_usuario_id' => 'Usuário',
         ];
     }
 

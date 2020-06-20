@@ -46,8 +46,8 @@ AppAsset::register($this);
     }else if(Yii::$app->user->identity->tipo_usuario == 1){
         Yii::$app->homeUrl = '/datas-professor';
         $linksFormatado = [
-                ['label' => "Datas Disponiveis", 'url' => ['/datas-professor']],
-                ['label' => "Diciplinas Aderentes", 'url' => ['/disciplinas-professor']]
+                ['label' => "Datas Disponíveis", 'url' => ['/datas-professor']],
+                ['label' => "Disciplinas Aderêntes", 'url' => ['/disciplinas-professor']]
         ];
 
     }else if(Yii::$app->user->identity->tipo_usuario == 2){
@@ -60,12 +60,12 @@ AppAsset::register($this);
         Yii::$app->homeUrl = '/aula';
         $linksFormatado = [
             ['label' => "Aulas", 'url' => ['/aula']],
-            ['label' => "Usuarios", 'url' => ['/usuario']],
+            ['label' => "Usuários", 'url' => ['/usuario']],
             ['label' => "Professores", 'url' => ['/professor']],
             ['label' => "Coordenadores", 'url' => ['/coordenador']],
             ['label' => "Unidades", 'url' => ['/unidade']],
             ['label' => "Cursos", 'url' => ['/curso']],
-            ['label' => "Diciplinas", 'url' => ['/disciplinas']],
+            ['label' => "Disciplina", 'url' => ['/disciplinas']],
 
         ];
     }

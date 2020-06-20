@@ -29,9 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'descricao',
             'tipo_curso',
-            'fk_coordenador_id',
+            [
+                    'header'=>"Coordenador",
+                    'attribute'=>'fkCoordenador.nome'
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

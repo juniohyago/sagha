@@ -27,13 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'tipo_usuario',
-            'username',
-            'password',
-            'authKey',
-            //'accessToken',
+            [
+                    'attribute'=>'tipo_usuario',
+                    'filter' => false,
+                    'value' => function ($model) {
+                        if($model->tipo_usuario == 1){
+                            return "Professor";
+                        }else if($model->tipo_usuario == 2){
+                            return "Coordenador";
+                        }
+                        else if($model->tipo_usuario == 3){
+                            return "Administrador";
+                        }
+                 },
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ],
+            'username',
+
+
+
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

@@ -46,9 +46,20 @@ class Coordenador extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
-            'sobre_nome' => 'Sobre Nome',
+            'sobre_nome' => 'Sobrenome',
             'fk_usuario_id' => 'Fk Usuario ID',
         ];
+    }
+    public function getUsuariosDisponiveis(){
+        $usuarios =  Usuario::find()->where('')->all();
+        $coordenadores = [];
+        foreach ($usuarios as $usuario){
+            if($usuario->tipo_usuario == 2 && empty($usuario->coordenadors)){
+                $coordenadores[$usuario->id] = $usuario->username;
+            }
+        }
+        return $coordenadores;
+
     }
 
     /**

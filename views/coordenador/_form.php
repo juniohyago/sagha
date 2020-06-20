@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'fk_usuario_id')->dropDownList($model->getUsuariosDisponiveis()) ?>
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'sobre_nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fk_usuario_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

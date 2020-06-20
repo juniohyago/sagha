@@ -60,12 +60,12 @@ class Professor extends \yii\db\ActiveRecord
             'id' => 'ID',
             'cpf' => 'Cpf',
             'nome' => 'Nome',
-            'sobreNome' => 'Sobre Nome',
+            'sobreNome' => 'Sobrenome',
             'email' => 'Email',
             'telefone' => 'Telefone',
             'titulacao' => 'Titulacao',
             'valor_hora_aula' => 'Valor Hora Aula',
-            'fkProfessor_usuario_id' => 'Fk Professor Usuario ID',
+            'fkProfessor_usuario_id' => 'Usuario',
         ];
     }
 
@@ -79,6 +79,17 @@ class Professor extends \yii\db\ActiveRecord
         return $this->hasMany(Aula::className(), ['fk_professor_id' => 'id']);
     }
 
+    public function getUsuariosDisponiveis(){
+      $usuarios =  Usuario::find()->where('')->all();
+      $professoresDisponveis = [];
+      foreach ($usuarios as $usuario){
+         if($usuario->tipo_usuario == 1 && empty($usuario->professors)){
+             $professoresDisponveis[$usuario->id] = $usuario->username;
+         }
+      }
+      return $professoresDisponveis;
+
+    }
     /**
      * Gets query for [[DatasProfessors]].
      *

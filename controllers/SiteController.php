@@ -68,6 +68,9 @@ class SiteController extends Controller
             } else if(Yii::$app->user->identity->tipo_usuario == 2){
                 Yii::$app->homeUrl = '/aula-coordenador';
             }
+            else if(Yii::$app->user->identity->tipo_usuario == 3){
+                Yii::$app->homeUrl = '/aula';
+            }
             return $this->goHome();
         }
         return $this->render('index');
@@ -90,6 +93,9 @@ class SiteController extends Controller
                 Yii::$app->homeUrl = '/datas-professor';
             } else if(Yii::$app->user->identity->tipo_usuario == 2){
                 Yii::$app->homeUrl = '/aula-coordenador';
+            }
+            else if(Yii::$app->user->identity->tipo_usuario == 3) {
+                Yii::$app->homeUrl = '/aula';
             }
             return  $this->goHome();
         }

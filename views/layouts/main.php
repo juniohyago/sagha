@@ -57,15 +57,16 @@ AppAsset::register($this);
         ];
     }
     else if(Yii::$app->user->identity->tipo_usuario == 3){
-        Yii::$app->homeUrl = '/aula-coordenador';
+        Yii::$app->homeUrl = '/aula';
         $linksFormatado = [
+            ['label' => "Aulas", 'url' => ['/aula']],
             ['label' => "Usuarios", 'url' => ['/usuario']],
             ['label' => "Professores", 'url' => ['/professor']],
             ['label' => "Coordenadores", 'url' => ['/coordenador']],
             ['label' => "Unidades", 'url' => ['/unidade']],
             ['label' => "Cursos", 'url' => ['/curso']],
             ['label' => "Diciplinas", 'url' => ['/disciplinas']],
-            ['label' => "Aulas", 'url' => ['/aula']],
+
         ];
     }
 

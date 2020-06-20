@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'fkProfessor_usuario_id')->dropDownList($model->getUsuariosDisponiveis()) ?>
+
     <?= $form->field($model, 'cpf')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
@@ -26,7 +28,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'valor_hora_aula')->textInput() ?>
 
-    <?= $form->field($model, 'fkProfessor_usuario_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

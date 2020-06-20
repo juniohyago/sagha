@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nome',
             'sobre_nome',
-            'fk_usuario_id',
+            'fkUsuario.username',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

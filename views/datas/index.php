@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataHora_inicio',
             'dataHora_fim',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

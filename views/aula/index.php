@@ -28,10 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'descricao',
-            'fk_disciplinas_disponiveis_id',
-            'fk_professor_id',
+            [
+                'header' => 'Diciplina',
+                'attribute' => 'fkDisciplinasDisponiveis.descricao',
+                'filter' =>$searchModel
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                    'header' => 'Professor',
+                    'attribute' =>  'fkProfessor.nome'
+            ],
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

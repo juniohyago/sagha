@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'valor_hora_aula',
             //'fkProfessor_usuario_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>
 

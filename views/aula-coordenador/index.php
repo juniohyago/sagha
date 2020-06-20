@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'descricao',
-            'fk_disciplinas_disponiveis_id',
-            'fk_professor_id',
+            'fkDisciplinasDisponiveis.descricao',
+            'fkProfessor.nome',
 
             ['class' => \app\models\actionDataCoordenador::class],
         ],

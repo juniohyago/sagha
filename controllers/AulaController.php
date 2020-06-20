@@ -2,9 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Curso;
+use app\models\Datas;
+use DateInterval;
+use DateTime;
 use Yii;
 use app\models\Aula;
-use app\models\AulaSearch;
+use app\models\AulaSerach;
+use yii\helpers\BaseArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +40,7 @@ class AulaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AulaSearch();
+        $searchModel = new AulaSerach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,17 +66,55 @@ class AulaController extends Controller
      * Creates a new Aula model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws \Exception
      */
     public function actionCreate()
     {
         $model = new Aula();
+        $data = new Datas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ((
+            $model->load(Yii::$app->request->post())
+            &&
+            $data->load(Yii::$app->request->post())
+        )
+        )
+        {
+            $dataInicio = DateTime::createFromFormat('d-M-Y H:i',$data->dataHora_inicio);
+            $dataFim = DateTime::createFromFormat('d-M-Y H:i',$data->dataHora_fim);
+
+
+
+
+            $model->save();
+            foreach ($model->arrayCursos as $cursos){
+
+                $cursosBanco = Curso::findOne(['id'=>$cursos]);
+
+                $model->link('cursos',$cursosBanco);
+            }
+            for ($i=0;$i<$data->quantidadeSemanas;$i++){
+                $dtInicio = new DateTime('@' . $dataInicio->getTimestamp());
+                $dtInicio->modify("+$i week");
+                $dataInicioFormatada = $dtInicio->format('Y-m-d H:i');
+
+                $dtFim = new DateTime('@' . $dataFim->getTimestamp());
+                $dtFim->modify("+$i week");
+                $dataFinalFormatada = $dtFim->format('Y-m-d H:i');
+
+                $databanco = new Datas();
+                $databanco->dataHora_inicio = $dataInicioFormatada;
+                $databanco->dataHora_fim = $dataFinalFormatada;
+                $databanco->save();
+                $model->link('datas',$databanco);
+            }
+
+           return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            "data"=> $data
         ]);
     }
 
@@ -81,17 +124,71 @@ class AulaController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionUpdate($id)
     {
+        $data = new Datas();
         $model = $this->findModel($id);
+        $datas = $model->getDatas()->all();
+        $cursosSelect = $model->getCursos()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->arrayCursos =  BaseArrayHelper::map($cursosSelect,'id','descricao');
+
+        if(!empty($datas)){
+            $data->quantidadeSemanas = count($datas);
+            $data->dataHora_inicio = $datas[0]->dataHora_inicio;
+            $data->dataHora_fim = $datas[0]->dataHora_fim;
+
+        }
+
+
+        if ($model->load(Yii::$app->request->post())&& $data->load(Yii::$app->request->post())) {
+
+            $model->fk_professor_id = null;
+
+            $dataInicio = DateTime::createFromFormat('d-M-Y H:i',$data->dataHora_inicio);
+            if(!$dataInicio){
+                $dataInicio = DateTime::createFromFormat('d-m-Y H:i',$data->dataHora_inicio);
+            }
+            $dataFim = DateTime::createFromFormat('d-M-Y H:i',$data->dataHora_fim);
+            if(!$dataFim){
+                $dataFim = DateTime::createFromFormat('d-m-Y H:i',$data->dataHora_fim);
+            }
+            $model->save();
+            $model->unlinkAll('cursos',true);
+            foreach ($model->arrayCursos as $cursos){
+
+                $cursosBanco = Curso::findOne(['id'=>$cursos]);
+
+                $model->link('cursos',$cursosBanco);
+            }
+
+            $model->unlinkAll('datas',true);
+            for ($i=0;$i<$data->quantidadeSemanas;$i++){
+                $dtInicio = new DateTime('@' . $dataInicio->getTimestamp());
+                $dtInicio->modify("+$i week");
+                $dataInicioFormatada = $dtInicio->format('Y-m-d H:i');
+
+                $dtFim = new DateTime('@' . $dataFim->getTimestamp());
+                $dtFim->modify("+$i week");
+                $dataFinalFormatada = $dtFim->format('Y-m-d H:i');
+
+                $databanco = new Datas();
+                $databanco->dataHora_inicio = $dataInicioFormatada;
+                $databanco->dataHora_fim = $dataFinalFormatada;
+                $databanco->save();
+                $model->link('datas',$databanco);
+            }
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'data'=>$data,
         ]);
     }
 

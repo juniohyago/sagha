@@ -1,11 +1,14 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Curso */
 /* @var $form yii\widgets\ActiveForm */
+
+
 ?>
 
 <div class="curso-form">
@@ -16,7 +19,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tipo_curso')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fk_coordenador_id')->textInput() ?>
+    <?= $form->field($model, 'fk_coordenador_id')->dropDownList(
+            $model->getallCordenadores()) ?>
+
+    <?= $form->field($model, 'unidadeSet')->dropDownList(
+            ArrayHelper::map($model->getallUnidades(),'id','descricao')
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -15,13 +15,14 @@ use Yii;
  * @property string $telefone
  * @property string $titulacao
  * @property float $valor_hora_aula
+ * @property int $fkProfessor_usuario_id
  *
- * @property AulaProfessor[] $aulaProfessors
  * @property Aula[] $aulas
- * @property DatasProfessorProfessor[] $datasProfessorProfessors
  * @property DatasProfessor[] $datasProfessors
+ * @property Datas[] $datas
  * @property DisciplinasDisponiveisProfessor[] $disciplinasDisponiveisProfessors
- * @property DisciplinasDisponivei[] $disciplinasDisponiveis
+ * @property DisciplinasDisponiveis[] $disciplinasDisponiveis
+ * @property Usuario $fkProfessorUsuario
  */
 class Professor extends \yii\db\ActiveRecord
 {
@@ -39,12 +40,14 @@ class Professor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cpf', 'nome', 'sobreNome', 'email', 'telefone', 'titulacao', 'valor_hora_aula'], 'required'],
+            [['cpf', 'nome', 'sobreNome', 'email', 'telefone', 'titulacao', 'valor_hora_aula', 'fkProfessor_usuario_id'], 'required'],
             [['valor_hora_aula'], 'number'],
+            [['fkProfessor_usuario_id'], 'integer'],
             [['cpf'], 'string', 'max' => 12],
             [['nome', 'sobreNome', 'titulacao'], 'string', 'max' => 255],
             [['email'], 'string', 'max' => 50],
             [['telefone'], 'string', 'max' => 20],
+            [['fkProfessor_usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['fkProfessor_usuario_id' => 'id']],
         ];
     }
 
@@ -62,18 +65,8 @@ class Professor extends \yii\db\ActiveRecord
             'telefone' => 'Telefone',
             'titulacao' => 'Titulacao',
             'valor_hora_aula' => 'Valor Hora Aula',
-
+            'fkProfessor_usuario_id' => 'Fk Professor Usuario ID',
         ];
-    }
-
-    /**
-     * Gets query for [[AulaProfessors]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAulaProfessors()
-    {
-        return $this->hasMany(AulaProfessor::className(), ['professor_id' => 'id']);
     }
 
     /**
@@ -83,17 +76,7 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getAulas()
     {
-        return $this->hasMany(Aula::className(), ['id' => 'aula_id'])->viaTable('{{%aula_professor}}', ['professor_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[DatasProfessorProfessors]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDatasProfessorProfessors()
-    {
-        return $this->hasMany(DatasProfessorProfessor::className(), ['professor_id' => 'id']);
+        return $this->hasMany(Aula::className(), ['fk_professor_id' => 'id']);
     }
 
     /**
@@ -103,7 +86,17 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDatasProfessors()
     {
-        return $this->hasMany(DatasProfessor::className(), ['id' => 'datas_professor_id'])->viaTable('{{%datas_professor_professor}}', ['professor_id' => 'id']);
+        return $this->hasMany(DatasProfessor::className(), ['professor_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Datas]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatas()
+    {
+        return $this->hasMany(Datas::className(), ['id' => 'datas_id'])->viaTable('{{%datas_professor}}', ['professor_id' => 'id']);
     }
 
     /**
@@ -123,6 +116,16 @@ class Professor extends \yii\db\ActiveRecord
      */
     public function getDisciplinasDisponiveis()
     {
-        return $this->hasMany(DisciplinasDisponivei::className(), ['id' => 'disciplinas_disponiveis_id'])->viaTable('{{%disciplinas_disponiveis_professor}}', ['professor_id' => 'id']);
+        return $this->hasMany(DisciplinasDisponiveis::className(), ['id' => 'disciplinas_disponiveis_id'])->viaTable('{{%disciplinas_disponiveis_professor}}', ['professor_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[FkProfessorUsuario]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFkProfessorUsuario()
+    {
+        return $this->hasOne(Usuario::className(), ['id' => 'fkProfessor_usuario_id']);
     }
 }

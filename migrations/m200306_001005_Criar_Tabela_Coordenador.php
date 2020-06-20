@@ -17,7 +17,17 @@ class m200306_001005_Criar_Tabela_Coordenador extends Migration
                 'id'=>$this->primaryKey(),
                 'nome'=>$this->string(60)->notNull(),
                 'sobre_nome'=>$this->string(60)->notNull(),
+                'fk_usuario_id'=>$this->integer()->notNull(),
             ]
+        );
+        $this->addForeignKey
+        (
+            'fk_usuario_id',
+            'coordenador',
+            'fk_usuario_id',
+            'usuario',
+            'id',
+            'CASCADE'
         );
     }
 

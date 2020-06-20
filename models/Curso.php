@@ -12,15 +12,17 @@ use Yii;
  * @property string $tipo_curso
  * @property int $fk_coordenador_id
  *
+ * @property AulaCurso[] $aulaCursos
+ * @property Aula[] $aulas
  * @property Coordenador $fkCoordenador
  * @property DisciplinasDisponiveisCurso[] $disciplinasDisponiveisCursos
- * @property DisciplinasDisponivei[] $disciplinasDisponiveis
- * @property Turma[] $turmas
+ * @property DisciplinasDisponiveis[] $disciplinasDisponiveis
  * @property UnidadeCurso[] $unidadeCursos
  * @property Unidade[] $unidades
  */
 class Curso extends \yii\db\ActiveRecord
 {
+    public $unidadeSet = [];
     /**
      * {@inheritdoc}
      */
@@ -35,7 +37,7 @@ class Curso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descricao', 'tipo_curso', 'fk_coordenador_id'], 'required'],
+            [['descricao', 'tipo_curso', 'fk_coordenador_id','unidadeSet'], 'required'],
             [['fk_coordenador_id'], 'integer'],
             [['descricao', 'tipo_curso'], 'string', 'max' => 60],
             [['fk_coordenador_id'], 'exist', 'skipOnError' => true, 'targetClass' => Coordenador::className(), 'targetAttribute' => ['fk_coordenador_id' => 'id']],
@@ -52,7 +54,48 @@ class Curso extends \yii\db\ActiveRecord
             'descricao' => 'Descricao',
             'tipo_curso' => 'Tipo Curso',
             'fk_coordenador_id' => 'Fk Coordenador ID',
+            'unidadeSet'=>'Unidades',
         ];
+    }
+
+    /**
+     * Gets query for [[AulaCursos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function getAulaCursos()
+    {
+        return $this->hasMany(AulaCurso::className(), ['curso_id' => 'id']);
+    }
+
+    public function getallCordenadores(){
+        $cordenadores = Coordenador::find()->where('')->all();
+        $arrayCordenadores = [];
+        foreach ($cordenadores as $cordenador){
+            $arrayCordenadores[$cordenador->id] = $cordenador->nome;
+        }
+        return $arrayCordenadores;
+
+    }
+    public function getallUnidades(){
+        $unidades = Unidade::find()->where('')->all();
+        $arrayUnidade = [];
+        foreach ($unidades as $unidade){
+            $arrayUnidade[$unidade->id] = $unidade->descricao;
+        }
+        return $unidades;
+
+    }
+
+    /**
+     * Gets query for [[Aulas]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAulas()
+    {
+        return $this->hasMany(Aula::className(), ['id' => 'aula_id'])->viaTable('{{%aula_curso}}', ['curso_id' => 'id']);
     }
 
     /**
@@ -82,17 +125,7 @@ class Curso extends \yii\db\ActiveRecord
      */
     public function getDisciplinasDisponiveis()
     {
-        return $this->hasMany(DisciplinasDisponivei::className(), ['id' => 'disciplinas_disponiveis_id'])->viaTable('{{%disciplinas_disponiveis_curso}}', ['curso_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Turmas]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTurmas()
-    {
-        return $this->hasMany(Turma::className(), ['fk_curso_id' => 'id']);
+        return $this->hasMany(DisciplinasDisponiveis::className(), ['id' => 'disciplinas_disponiveis_id'])->viaTable('{{%disciplinas_disponiveis_curso}}', ['curso_id' => 'id']);
     }
 
     /**

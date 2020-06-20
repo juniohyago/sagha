@@ -7,15 +7,15 @@ use Yii;
 /**
  * This is the model class for table "{{%datas_professor}}".
  *
- * @property int $id
- * @property string $dataHora_inicio
- * @property string $dataHora_fim
+ * @property int $datas_id
+ * @property int $professor_id
  *
- * @property DatasProfessorProfessor[] $datasProfessorProfessors
- * @property Professor[] $professors
+ * @property Datas $datas
+ * @property Professor $professor
  */
 class DatasProfessor extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -30,8 +30,11 @@ class DatasProfessor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dataHora_inicio', 'dataHora_fim'], 'required'],
-            [['dataHora_inicio', 'dataHora_fim'], 'safe'],
+            [['datas_id', 'professor_id'], 'required'],
+            [['datas_id', 'professor_id'], 'integer'],
+            [['datas_id', 'professor_id'], 'unique', 'targetAttribute' => ['datas_id', 'professor_id']],
+            [['datas_id'], 'exist', 'skipOnError' => true, 'targetClass' => Datas::className(), 'targetAttribute' => ['datas_id' => 'id']],
+            [['professor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Professor::className(), 'targetAttribute' => ['professor_id' => 'id']],
         ];
     }
 
@@ -41,29 +44,28 @@ class DatasProfessor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'dataHora_inicio' => 'Data Hora Inicio',
-            'dataHora_fim' => 'Data Hora Fim',
+            'datas_id' => 'Datas ID',
+            'professor_id' => 'Professor ID',
         ];
     }
 
     /**
-     * Gets query for [[DatasProfessorProfessors]].
+     * Gets query for [[Datas]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDatasProfessorProfessors()
+    public function getDatas()
     {
-        return $this->hasMany(DatasProfessorProfessor::className(), ['datas_professor_id' => 'id']);
+        return $this->hasOne(Datas::className(), ['id' => 'datas_id']);
     }
 
     /**
-     * Gets query for [[Professors]].
+     * Gets query for [[Professor]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getProfessors()
+    public function getProfessor()
     {
-        return $this->hasMany(Professor::className(), ['id' => 'professor_id'])->viaTable('{{%datas_professor_professor}}', ['datas_professor_id' => 'id']);
+        return $this->hasOne(Professor::className(), ['id' => 'professor_id']);
     }
 }

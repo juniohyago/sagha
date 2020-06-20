@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'telefone',
             'titulacao',
             'valor_hora_aula',
+            'fkProfessor_usuario_id',
         ],
     ]) ?>
 

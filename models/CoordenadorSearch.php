@@ -17,7 +17,7 @@ class CoordenadorSearch extends Coordenador
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'fk_usuario_id'], 'integer'],
             [['nome', 'sobre_nome'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class CoordenadorSearch extends Coordenador
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'fk_usuario_id' => $this->fk_usuario_id,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])

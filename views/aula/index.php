@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AulaSearch */
+/* @var $searchModel app\models\AulaSerach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Aulas';
@@ -27,10 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'descricao',
             'fk_disciplinas_disponiveis_id',
-            'fk_turmas_id',
-            'dataHora_inicio',
-            'dataHora_fim',
+            'fk_professor_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

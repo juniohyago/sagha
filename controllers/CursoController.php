@@ -2,9 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Unidade;
 use Yii;
 use app\models\Curso;
-use app\models\CursoSearch;
+use app\models\CursoSerach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +36,7 @@ class CursoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CursoSearch();
+        $searchModel = new CursoSerach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,8 +67,11 @@ class CursoController extends Controller
     {
         $model = new Curso();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+           $model->link('unidades',Unidade::findOne(['id'=>$model->unidadeSet]));
+
+           return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -85,8 +89,14 @@ class CursoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $unidades = $model->getUnidades()->all();
+        $model->unidadeSet = $unidades;
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->unlinkAll('unidades',$unidades);
+
+            $model->link('unidades',Unidade::findOne(['id'=>$model->unidadeSet]));
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

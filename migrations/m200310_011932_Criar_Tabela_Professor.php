@@ -22,7 +22,17 @@ class m200310_011932_Criar_Tabela_Professor extends Migration
                 'telefone'=>$this->string(20)->notNull(60),
                 'titulacao'=>$this->string()->notNull(60),
                 'valor_hora_aula'=>$this->float()->notNull(),
+                'fkProfessor_usuario_id'=>$this->integer()->notNull(),
             ]
+        );
+        $this->addForeignKey
+        (
+            'fkProfessor_usuario_id',
+            'professor',
+            'fkProfessor_usuario_id',
+            'usuario',
+            'id',
+            'CASCADE'
         );
     }
 

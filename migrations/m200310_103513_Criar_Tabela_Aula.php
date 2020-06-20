@@ -15,10 +15,11 @@ class m200310_103513_Criar_Tabela_Aula extends Migration
         $this->createTable('aula',
             [
                'id'=>$this->primaryKey(),
+                'descricao'=>$this->string(60)->notNull(),
                 'fk_disciplinas_disponiveis_id'=>$this->integer()->notNull(),
-                'fk_turmas_id'=>$this->integer()->notNull(),
-                'dataHora_inicio'=>$this->dateTime()->notNull(),
-                'dataHora_fim'=>$this->dateTime()->notNull(),
+
+                'fk_professor_id'=>$this->integer()->notNull(),
+
             ]
         );
         $this->addForeignKey
@@ -27,6 +28,15 @@ class m200310_103513_Criar_Tabela_Aula extends Migration
             'aula',
             'fk_disciplinas_disponiveis_id',
             'disciplinas_disponiveis',
+            'id',
+            'CASCADE'
+        );
+        $this->addForeignKey
+        (
+            'fk_professor_id',
+            'aula',
+            'fk_professor_id',
+            'professor',
             'id',
             'CASCADE'
         );

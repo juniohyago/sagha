@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Professor;
-use app\models\ProfessorSearch;
+use app\models\ProfessorSerach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class ProfessorController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProfessorSearch();
+        $searchModel = new ProfessorSerach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProfessorSearch */
+/* @var $searchModel app\models\ProfessorSerach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Professors';
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'telefone',
             //'titulacao',
             //'valor_hora_aula',
+            //'fkProfessor_usuario_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

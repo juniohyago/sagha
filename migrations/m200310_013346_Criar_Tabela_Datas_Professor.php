@@ -12,7 +12,7 @@ class m200310_013346_Criar_Tabela_Datas_Professor extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('datas_professor',
+        $this->createTable('datas',
             [
                 'id'=>$this->primaryKey(),
                 'dataHora_inicio'=>$this->dateTime()->notNull(),

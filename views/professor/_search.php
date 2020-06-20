@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProfessorSearch */
+/* @var $model app\models\ProfessorSerach */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -30,6 +30,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'titulacao') ?>
 
     <?php // echo $form->field($model, 'valor_hora_aula') ?>
+
+    <?php // echo $form->field($model, 'fkProfessor_usuario_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -61,6 +61,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        if (!Yii::$app->user->isGuest) {
+            if(Yii::$app->user->identity->tipo_usuario == 1) {
+                Yii::$app->homeUrl = '/datas-professor';
+            } else if(Yii::$app->user->identity->tipo_usuario == 2){
+                Yii::$app->homeUrl = '/aula-coordenador';
+            }
+            return $this->goHome();
+        }
         return $this->render('index');
     }
 
@@ -77,7 +86,12 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if(Yii::$app->user->identity->tipo_usuario == 1) {
+                Yii::$app->homeUrl = '/datas-professor';
+            } else if(Yii::$app->user->identity->tipo_usuario == 2){
+                Yii::$app->homeUrl = '/aula-coordenador';
+            }
+            return  $this->goHome();
         }
 
         $model->password = '';

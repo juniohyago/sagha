@@ -12,7 +12,7 @@ $this->title = 'SAGHA';
 
         <p class="lead">Sistema de apoio e gerenciamento de horários acadêmicos.</p>
 
-        <p><a class="btn btn-lg btn-success" href="login">Faça o login para começar.</a></p>
+        <p><a class="btn btn-lg btn-success" href="site/login">Faça o login para começar.</a></p>
     </div>
 
 </div>

@@ -28,6 +28,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+
     NavBar::begin([
         'brandLabel' => 'SAGHA',
         'brandUrl' => Yii::$app->homeUrl,
@@ -35,25 +36,57 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    if( Yii::$app->user->isGuest){
+        $usuario = "nada";
+        Yii::$app->homeUrl = '/site/index';
+
+        $linksFormatado = [
+                ['label' => "Pagina inicial", 'url' => ['/site/index']],
+        ];
+    }else if(Yii::$app->user->identity->tipo_usuario == 1){
+        Yii::$app->homeUrl = '/datas-professor';
+        $linksFormatado = [
+                ['label' => "Datas Disponiveis", 'url' => ['/datas-professor']],
+                ['label' => "Diciplinas Aderentes", 'url' => ['/disciplinas-professor']]
+        ];
+
+    }else if(Yii::$app->user->identity->tipo_usuario == 2){
+        Yii::$app->homeUrl = '/aula-coordenador';
+        $linksFormatado = [
+            ['label' => "Suas Aulas", 'url' => ['/aula-coordenador']]
+        ];
+    }
+    else if(Yii::$app->user->identity->tipo_usuario == 3){
+        Yii::$app->homeUrl = '/aula-coordenador';
+        $linksFormatado = [
+            ['label' => "Usuarios", 'url' => ['/usuario']],
+            ['label' => "Professores", 'url' => ['/professor']],
+            ['label' => "Coordenadores", 'url' => ['/coordenador']],
+            ['label' => "Unidades", 'url' => ['/unidade']],
+            ['label' => "Cursos", 'url' => ['/curso']],
+            ['label' => "Diciplinas", 'url' => ['/disciplinas']],
+            ['label' => "Aulas", 'url' => ['/aula']],
+        ];
+    }
+
+    array_push($linksFormatado,Yii::$app->user->isGuest ? (
+    ['label' => 'Login', 'url' => ['/site/login']]
+    ) : (
+        '<li>'
+        . Html::beginForm(['/site/logout'], 'post')
+        . Html::submitButton(
+            'Logout (' . Yii::$app->user->identity->username . ')',
+            ['class' => 'btn btn-link logout']
+        )
+        . Html::endForm()
+        . '</li>'
+    ));
+
+
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Pagina inicial', 'url' => ['/site/index']],
-//            ['label' => 'Quem somos', 'url' => ['/site/about']],
-            ['label' => 'Contato', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $linksFormatado
     ]);
     NavBar::end();
     ?>

@@ -17,7 +17,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tipo_curso')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tipo_curso')->dropDownList([
+            'Bacharel'=>'Bacharel',
+            'Licenciatura'=>'Licenciatura',
+            'Tecnólogo'=>'Tecnólogo',
+            'MBA'=>'MBA',
+            'Mestrado'=>'Mestrado',
+            'Doutorado'=>'Doutorado',
+            'PHD'=>'PHD'
+
+    ],['maxlength' => true]) ?>
 
     <?= $form->field($model, 'fk_coordenador_id')->dropDownList(
             $model->getallCordenadores()) ?>

@@ -51,23 +51,23 @@ class Aula extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao' => 'Descricao',
-            'fk_disciplinas_disponiveis_id' => 'Fk Disciplinas Disponiveis ID',
-            'fk_professor_id' => 'Fk Professor ID',
+            'descricao' => 'Descrição',
+            'fk_disciplinas_disponiveis_id' => 'Disciplina',
+            'fk_professor_id' => 'Professor',
             'arrayCursos'=>'Cursos'
         ];
     }
     public function getallCursos(){
         return Curso::find()->where('')->all();
     }
-    public function getAllProfessores(){
-        $professores =Professor::find()->where('')->all();
-        $retorno =[];
-        foreach ($professores as $professor){
-            $retorno[$professor->id] = $professor->nome;
-        }
-        return $retorno;
-    }
+//    public function getAllProfessores(){
+//        $professores =Professor::find()->where('')->all();
+//        $retorno =[];
+//        foreach ($professores as $professor){
+//            $retorno[$professor->id] = $professor->nome;
+//        }
+//        return $retorno;
+//    }
     public function getAllDisciplinas(){
         $professores =DisciplinasDisponiveis::find()->where('')->all();
         $retorno =[];

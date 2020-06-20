@@ -24,7 +24,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'telefone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'titulacao')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'titulacao')->dropDownList([
+        'Bacharel'=>'Bacharel',
+        'Licenciatura'=>'Licenciatura',
+        'Tecnólogo'=>'Tecnólogo',
+        'Especialista'=>'Especialista',
+        'MBA'=>'MBA',
+        'Mestrado'=>'Mestrado',
+        'Doutorado'=>'Doutorado',
+        'PHD'=>'PHD'
+
+    ],['maxlength' => true]) ?>
 
     <?= $form->field($model, 'valor_hora_aula')->textInput() ?>
 

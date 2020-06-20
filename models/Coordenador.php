@@ -47,7 +47,8 @@ class Coordenador extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nome' => 'Nome',
             'sobre_nome' => 'Sobrenome',
-            'fk_usuario_id' => 'Fk Usuario ID',
+            'fk_usuario_id' => 'Usuario ',
+
         ];
     }
     public function getUsuariosDisponiveis(){

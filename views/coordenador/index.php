@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CoordenadorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Coordenadors';
+$this->title = 'Coordenadores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="coordenador-index">
@@ -29,8 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nome',
             'sobre_nome',
-            'fkUsuario.username',
-
+            [
+                'header'=>"Usuario",
+                'attribute'=>'fkUsuario.username'
+            ],
             ['class' => \app\models\actionAdmin::class],
         ],
     ]); ?>

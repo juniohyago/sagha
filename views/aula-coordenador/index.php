@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\AulaSerach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Aulas';
+$this->title = 'Suas Aulas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aula-index">
@@ -25,7 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'descricao',
-            'fkDisciplinasDisponiveis.descricao',
+            [
+                'header'=>"Disciplina",
+                'attribute'=>'fkDisciplinasDisponiveis.descricao'
+            ],
+
             'fkProfessor.nome',
 
             ['class' => \app\models\actionDataCoordenador::class],

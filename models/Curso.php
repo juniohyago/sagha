@@ -53,7 +53,7 @@ class Curso extends \yii\db\ActiveRecord
             'id' => 'ID',
             'descricao' => 'Descricao',
             'tipo_curso' => 'Tipo Curso',
-            'fk_coordenador_id' => 'Fk Coordenador ID',
+            'fk_coordenador_id' => 'Coordenador',
             'unidadeSet'=>'Unidades',
         ];
     }
